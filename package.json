@@ -1,0 +1,25 @@
+{
+  "name": "dolphinphp-next",
+  "version": "1.0.0",
+  "description": "DolphinPHP Next Generation Admin Framework",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "watch": "tailwindcss -i ./public/static/css/input.css -o ./public/static/css/output.css --watch",
+    "build:css": "tailwindcss -i ./public/static/css/input.css -o ./public/static/css/output.css --minify"
+  },
+  "dependencies": {
+    "htmx.org": "^1.9.10"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/typography": "^0.5.10",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.3.6",
+    "vite": "^5.0.0"
+  }
+}

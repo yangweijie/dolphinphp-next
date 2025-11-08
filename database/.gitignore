@@ -1,0 +1,12 @@
+# 忽略数据库文件
+*.sqlite
+*.sqlite3
+*.db
+
+# 忽略数据库备份文件
+*.sql
+*.backup
+*.dump
+
+# 忽略日志文件
+*.log

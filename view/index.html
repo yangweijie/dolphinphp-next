@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DolphinPHP - HTMX + Yoyo 前端</title>
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <script src="/static/js/yoyo.js"></script>
+    <script>window.Yoyo && (Yoyo.url = '/ui/yoyo');</script>
+    <link rel="stylesheet" href="./src/assets/css/main.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo"><h2>DolphinPHP</h2></div>
+            <nav class="nav-menu" style="display:flex;gap:12px;align-items:center;">
+                <a href="#" hx-get="/ui/component/home" hx-target="#content" hx-swap="innerHTML">首页</a>
+                <a href="#" hx-get="/ui/component/form" hx-target="#content" hx-push-url="true">表单构建器</a>
+                <a href="#" hx-get="/ui/component/table" hx-target="#content" hx-push-url="true">表格构建器</a>
+                <a href="#" hx-get="/ui/component/users" hx-target="#content" hx-swap="innerHTML">用户管理</a>
+            </nav>
+            <div class="user-info">
+                <a href="#" hx-get="/ui/component/login" hx-target="#content" hx-swap="innerHTML">登录</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="content" class="main-content">
+        <div hx-get="/ui/component/home" hx-trigger="load" hx-swap="innerHTML"></div>
+    </main>
+
+    <footer style="text-align:center;margin:20px;color:#888;">
+        <small>Powered by DolphinPHP + HTMX + Yoyo</small>
+    </footer>
+</body>
+</html>
