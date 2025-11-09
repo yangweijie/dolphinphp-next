@@ -1580,3 +1580,5 @@ if (!function_exists('check_icon_url')) {
         return true;
     }
 }
+
+require_once 'yoyo_helpers.php';

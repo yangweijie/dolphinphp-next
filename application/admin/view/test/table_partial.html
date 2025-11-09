@@ -1,0 +1,24 @@
+<?php
+    $table_data = $users;
+    $table_config = ['striped' => true, 'hover' => true, 'bordered' => true];
+    $table_columns = [];
+?>
+
+<!-- 定义表格列 -->
+<?php $table_columns[] = ['field' => 'id', 'title' => 'ID', 'type' => 'text', 'config' => []]; ?>
+<?php $table_columns[] = ['field' => 'username', 'title' => '用户名', 'type' => 'text', 'config' => []]; ?>
+<?php $table_columns[] = ['field' => 'avatar', 'title' => '头像', 'type' => 'image', 'config' => ['width' => 50, 'height' => 50]]; ?>
+<?php $table_columns[] = ['field' => 'email', 'title' => '邮箱', 'type' => 'text', 'config' => []]; ?>
+<?php $table_columns[] = ['field' => 'status', 'title' => '状态', 'type' => 'status', 'config' => [
+'status_map' => ['0' => '禁用', '1' => '启用'],
+'color_map' => ['0' => 'danger', '1' => 'success']
+]]; ?>
+<?php $table_columns[] = ['field' => 'is_admin', 'title' => '管理员', 'type' => 'switch', 'config' => []]; ?>
+<?php $table_columns[] = ['field' => 'created_at', 'title' => '创建时间', 'type' => 'datetime', 'config' => []]; ?>
+<?php $table_columns[] = ['field' => 'id', 'title' => '操作', 'type' => 'callback', 'config' => ['callback' => 'render_user_actions']]; ?>
+
+<!-- 渲染表格 -->
+<?php echo yoyo_table($table_data, $table_columns, $table_config); ?>
+
+<!-- 分页器 -->
+<?php echo htmx_paginate($pagination_config); ?>

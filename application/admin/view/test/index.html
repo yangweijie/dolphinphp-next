@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>YoYo组件测试</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="__ADMIN_CSS__/bootstrap.min.css?v={:config('asset_version')}">
+    <link rel="stylesheet" href="__ADMIN_CSS__/oneui.css?v={:config('asset_version')}">
+    <link rel="stylesheet" href="__ADMIN_CSS__/dolphin.css?v={:config('asset_version')}" id="css-main">
+    <link rel="stylesheet" href="__LIBS__/viewer/viewer.min.css?v={:config('asset_version')}">
+    <link rel="stylesheet" id="css-theme" href="__ADMIN_CSS__/themes/{:config('system_color')}.min.css?v={:config('asset_version')}">
+
+    <!-- HTMX -->
+    <script src="__LIBS__/htmlx.min.js"></script>
+
+    <style>
+        body { background: #f5f5f5; }
+        .main-content { margin-right: 320px; transition: margin 0.3s ease; }
+        .test-section { margin-bottom: 30px; background: white; padding: 20px; border-radius: 5px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .test-title { margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #337ab7; color: #337ab7; }
+    </style>
+    <style>
+        .stats-item {
+            text-align: center;
+        }
+        .stats-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #337ab7;
+        }
+        .stats-label {
+            color: #666;
+            margin-top: 5px;
+        }
+        .htmx-indicator {
+            display: none;
+        }
+        .htmx-request .htmx-indicator {
+            display: block;
+        }
+        .htmx-request #htmx-loading {
+            display: block !important;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <span class="navbar-brand">YoYo组件测试平台</span>
+        </div>
+        <ul class="navbar-nav navbar-right">
+            <li><a href="{:url('yoyo_test')}">YoYo组件测试</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container-fluid" style="margin-top: 70px;">
+    <div class="main-content">
+
+        <!-- 搜索表单测试 -->
+        <div class="test-section">
+            <h3 class="test-title"><i class="fa fa-search"></i> 搜索表单测试</h3>
+            <form hx-get="{:url('index')}"
+                  hx-target="#user-table-container"
+                  hx-indicator="#search-loading"
+                  hx-trigger="submit, change delay:500ms">
+                <div class="row">
+                    <div class="col-md-3">
+                        <input type="text" name="keyword" class="form-control"
+                               placeholder="搜索用户名/邮箱" value="{$Think.get.keyword}">
+                    </div>
+                    <div class="col-md-2">
+                        <select name="status" class="form-control">
+                            <option value="">全部状态</option>
+                            <option value="1" {if $Think.get.status == '1'}selected{/if}>启用</option>
+                            <option value="0" {if $Think.get.status == '0'}selected{/if}>禁用</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-search"></i> 搜索
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div id="search-loading" class="htmx-indicator" style="margin-top: 10px;">
+                <i class="fa fa-spinner fa-spin"></i> 搜索中...
+            </div>
+        </div>
+
+        <!-- 表格组件测试 -->
+        <div class="test-section">
+            <h3 class="test-title"><i class="fa fa-table"></i> HTMX表格测试</h3>
+            <div id="user-table-container">
+                {include file="test/table_partial" /}
+            </div>
+        </div>
+
+        <!-- 自定义标签表单测试 -->
+        <div class="test-section">
+            <h3 class="test-title"><i class="fa fa-wpforms"></i> 自定义标签表单测试</h3>
+            <div class="row">
+                <div class="col-md-8">
+                    <yoyo:form action="{:url('save')}" method="POST">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <yoyo:text name="username" title="用户名" value=""
+                                           config="['required' => true, 'maxlength' => 50, 'placeholder' => '请输入用户名']" />
+                            </div>
+                            <div class="col-md-6">
+                                <yoyo:text name="email" title="邮箱" value=""
+                                           config="['required' => true, 'placeholder' => '请输入邮箱地址']" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <yoyo:password name="password" title="密码"
+                                               config="['required' => true, 'placeholder' => '请输入密码']" />
+                            </div>
+                            <div class="col-md-6">
+                                <yoyo:select name="role_id" title="角色" options="{$roles}" value=""
+                                             config="['placeholder' => '请选择角色']" />
+                            </div>
+                        </div>
+
+                        <yoyo:checkbox name="permissions" title="权限" options="{$permissions}"
+                                       value="[]"
+                                       config="['inline' => false, 'columns' => 2]" />
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <yoyo:switch name="status" title="用户状态" value="true"
+                                             config="['on_text' => '启用', 'off_text' => '禁用', 'color' => 'success']" />
+                            </div>
+                            <div class="col-md-6">
+                                <yoyo:date name="birthday" title="生日" value=""
+                                           config="['show_clear' => true]" />
+                            </div>
+                        </div>
+
+                        <yoyo:textarea name="bio" title="个人简介" value=""
+                                       config="['rows' => 4, 'placeholder' => '请输入个人简介']" />
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-save"></i> 保存用户
+                            </button>
+                            <button type="reset" class="btn btn-default">
+                                <i class="fa fa-refresh"></i> 重置
+                            </button>
+                        </div>
+                    </yoyo:form>
+                </div>
+            </div>
+        </div>
+
+        <!-- 卡片布局测试 -->
+        <div class="test-section">
+            <h3 class="test-title"><i class="fa fa-th-large"></i> 卡片布局测试</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <yoyo:card title="用户统计" config="[]">
+                        <div class="stats-item">
+                            <div class="stats-number">1,234</div>
+                            <div class="stats-label">总用户数</div>
+                        </div>
+                    </yoyo:card>
+                </div>
+                <div class="col-md-4">
+                    <yoyo:card title="今日数据" config="[]">
+                        <div class="stats-item">
+                            <div class="stats-number">56</div>
+                            <div class="stats-label">新增用户</div>
+                        </div>
+                    </yoyo:card>
+                </div>
+                <div class="col-md-4">
+                    <yoyo:card title="系统状态" config="[]">
+                        <div class="stats-item">
+                            <div class="stats-number text-success">正常</div>
+                            <div class="stats-label">服务状态</div>
+                        </div>
+                    </yoyo:card>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 侧边栏测试 -->
+    <aside class="aside-builder aside-right aside-theme-light"
+           style="width: 300px; position: fixed; top: 70px; right: 0; bottom: 0; background: white; border-left: 1px solid #ddd; overflow-y: auto;">
+
+        <div class="aside-header" style="padding: 15px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;">
+            <h4 style="margin: 0;">操作面板</h4>
+            <button class="btn btn-sm btn-default" onclick="toggleAside()">
+                <i class="fa fa-compress"></i>
+            </button>
+        </div>
+
+        <div class="aside-content" style="padding: 0;">
+            <!-- 快速操作小部件 -->
+            <div style="margin: 15px; border: 1px solid #ddd; border-radius: 4px;">
+                <div style="padding: 10px 15px; background: #f8f9fa; border-bottom: 1px solid #ddd; font-weight: 500;">
+                    <i class="fa fa-bolt"></i> 快速操作
+                </div>
+                <div style="padding: 15px;">
+                    <a href="#" class="btn btn-primary btn-block" style="margin-bottom: 10px;">
+                        <i class="fa fa-plus"></i> 新增用户
+                    </a>
+                    <a href="#" class="btn btn-success btn-block" style="margin-bottom: 10px;">
+                        <i class="fa fa-download"></i> 导出数据
+                    </a>
+                    <a href="#" class="btn btn-info btn-block">
+                        <i class="fa fa-upload"></i> 导入数据
+                    </a>
+                </div>
+            </div>
+
+            <!-- 最近操作小部件 -->
+            <div style="margin: 15px; border: 1px solid #ddd; border-radius: 4px;">
+                <div style="padding: 10px 15px; background: #f8f9fa; border-bottom: 1px solid #ddd; font-weight: 500;">
+                    <i class="fa fa-history"></i> 最近操作
+                </div>
+                <div style="max-height: 200px; overflow-y: auto;">
+                    <div style="padding: 10px 15px; border-bottom: 1px solid #f0f0f0;">
+                        <div style="font-weight: 500;">新增用户</div>
+                        <div style="color: #666; font-size: 12px;">用户名: testuser</div>
+                        <div style="color: #999; font-size: 11px;">5分钟前</div>
+                    </div>
+                    <div style="padding: 10px 15px; border-bottom: 1px solid #f0f0f0;">
+                        <div style="font-weight: 500;">修改配置</div>
+                        <div style="color: #666; font-size: 12px;">系统设置更新</div>
+                        <div style="color: #999; font-size: 11px;">10分钟前</div>
+                    </div>
+                    <div style="padding: 10px 15px;">
+                        <div style="font-weight: 500;">删除文件</div>
+                        <div style="color: #666; font-size: 12px;">清理临时文件</div>
+                        <div style="color: #999; font-size: 11px;">1小时前</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 系统信息小部件 -->
+            <div style="margin: 15px; border: 1px solid #ddd; border-radius: 4px;">
+                <div style="padding: 10px 15px; background: #f8f9fa; border-bottom: 1px solid #ddd; font-weight: 500;">
+                    <i class="fa fa-info-circle"></i> 系统信息
+                </div>
+                <div style="padding: 15px;">
+                    <div style="margin-bottom: 10px;">
+                        <small>PHP版本: <?php echo PHP_VERSION; ?></small>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <small>服务器时间: <?php echo date('Y-m-d H:i:s'); ?></small>
+                    </div>
+                    <div>
+                        <small>内存使用: <?php echo round(memory_get_usage()/1024/1024, 2); ?>MB</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<!-- HTMX加载指示器 -->
+<div id="htmx-loading" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.8); color: white; padding: 15px 25px; border-radius: 8px; z-index: 9999; display: none;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <i class="fa fa-spinner fa-spin"></i>
+        <span>处理中...</span>
+    </div>
+</div>
+
+<script>
+    // 侧边栏切换
+    function toggleAside() {
+        const aside = document.querySelector('.aside-builder');
+        const mainContent = document.querySelector('.main-content');
+
+        if (aside.style.display === 'none') {
+            aside.style.display = 'block';
+            mainContent.style.marginRight = '320px';
+        } else {
+            aside.style.display = 'none';
+            mainContent.style.marginRight = '0';
+        }
+    }
+
+    // HTMX事件监听
+    document.body.addEventListener('htmx:configRequest', function(evt) {
+        // 添加CSRF token等
+        console.log('HTMX请求配置:', evt.detail);
+    });
+
+    document.body.addEventListener('htmx:afterRequest', function(evt) {
+        console.log('HTMX请求完成:', evt.detail);
+
+        // 如果是删除操作成功，刷新表格
+        if (evt.detail.xhr.status === 200 && evt.detail.requestConfig.verb === 'delete') {
+            const response = JSON.parse(evt.detail.xhr.responseText);
+            if (response.code === 1) {
+                // 重新加载表格
+                htmx.ajax('GET', '{:url("index")}', '#user-table-container');
+                alert(response.msg);
+            } else {
+                alert(response.msg);
+            }
+        }
+    });
+
+    // 表单提交处理
+    document.body.addEventListener('htmx:afterRequest', function(evt) {
+        if (evt.detail.requestConfig.verb === 'post') {
+            const response = JSON.parse(evt.detail.xhr.responseText);
+            if (response.code === 1) {
+                alert('保存成功！');
+                evt.target.reset(); // 重置表单
+            } else {
+                alert('保存失败：' + response.msg);
+            }
+        }
+    });
+</script>
+</body>
+</html>

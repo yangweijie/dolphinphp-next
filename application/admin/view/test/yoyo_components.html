@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>YoYo组件专项测试</title>
+    <link rel="stylesheet" href="__ADMIN_CSS__/bootstrap.min.css?v={:config('asset_version')}">
+    <link rel="stylesheet" href="__ADMIN_CSS__/oneui.css?v={:config('asset_version')}">
+    <link rel="stylesheet" href="__ADMIN_CSS__/dolphin.css?v={:config('asset_version')}" id="css-main">
+    <link rel="stylesheet" href="__LIBS__/viewer/viewer.min.css?v={:config('asset_version')}">
+    <link rel="stylesheet" id="css-theme" href="__ADMIN_CSS__/themes/{:config('system_color')}.min.css?v={:config('asset_version')}">
+
+    <!-- HTMX -->
+    <script src="__LIBS__/htmlx.min.js"></script
+</head>
+<body>
+<div class="container" style="margin-top: 20px;">
+    <h1>YoYo组件专项测试</h1>
+
+    <!-- 测试所有表单组件 -->
+    <div class="row">
+        <div class="col-md-6">
+            <h3>基础输入组件</h3>
+
+            <yoyo:text name="test_text" title="文本输入" value="测试文本"
+                       config="['placeholder' => '请输入文本', 'maxlength' => 100]" />
+
+            <yoyo:password name="test_password" title="密码输入"
+                           config="['placeholder' => '请输入密码']" />
+
+            <yoyo:number name="test_number" title="数字输入" value="100"
+                         config="['min' => 0, 'max' => 1000, 'step' => 10]" />
+
+            <yoyo:textarea name="test_textarea" title="多行文本" value="这是多行文本内容"
+                           config="['rows' => 4, 'placeholder' => '请输入多行文本']" />
+        </div>
+
+        <div class="col-md-6">
+            <h3>选择组件</h3>
+
+            <yoyo:select name="test_select" title="下拉选择"
+                         options="['1' => '选项1', '2' => '选项2', '3' => '选项3']"
+                         value="2" />
+
+            <yoyo:radio name="test_radio" title="单选框"
+                        options="['male' => '男', 'female' => '女']"
+                        value="male" />
+
+            <yoyo:checkbox name="test_checkbox" title="复选框"
+                           options="['read' => '阅读', 'write' => '写作', 'code' => '编程']"
+                           value="['read', 'code']"
+                           config="['inline' => true]" />
+
+            <yoyo:switch name="test_switch" title="开关" value="true"
+                         config="['on_text' => '开启', 'off_text' => '关闭']" />
+        </div>
+    </div>
+
+    <!-- 测试日期时间组件 -->
+    <div class="row">
+        <div class="col-md-12">
+            <h3>日期时间组件</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <yoyo:date name="test_date" title="日期选择" value="2024-01-01" />
+                </div>
+                <div class="col-md-4">
+                    <!-- 如果实现了时间组件 -->
+                    <!-- <yoyo:time name="test_time" title="时间选择" value="10:30" /> -->
+                </div>
+                <div class="col-md-4">
+                    <!-- 如果实现了日期时间组件 -->
+                    <!-- <yoyo:datetime name="test_datetime" title="日期时间" value="2024-01-01 10:30:00" /> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 测试卡片组件 -->
+    <div class="row">
+        <div class="col-md-4">
+            <yoyo:card title="测试卡片1">
+                <p>这是卡片1的内容</p>
+                <button class="btn btn-primary">操作按钮</button>
+            </yoyo:card>
+        </div>
+        <div class="col-md-4">
+            <yoyo:card title="测试卡片2">
+                <ul>
+                    <li>列表项1</li>
+                    <li>列表项2</li>
+                    <li>列表项3</li>
+                </ul>
+            </yoyo:card>
+        </div>
+        <div class="col-md-4">
+            <yoyo:card title="测试卡片3">
+                <div class="alert alert-info">
+                    这是一个信息提示框
+                </div>
+            </yoyo:card>
+        </div>
+    </div>
+
+    <!-- 测试表格组件 -->
+    <h3>表格组件测试</h3>
+    <yoyo:table data="[
+            ['id' => 1, 'name' => '张三', 'age' => 25, 'status' => 1],
+            ['id' => 2, 'name' => '李四', 'age' => 30, 'status' => 0],
+            ['id' => 3, 'name' => '王五', 'age' => 28, 'status' => 1]
+        ]">
+        <yoyo:column field="id" title="ID" type="text" />
+        <yoyo:column field="name" title="姓名" type="text" />
+        <yoyo:column field="age" title="年龄" type="text" />
+        <yoyo:column field="status" title="状态" type="status"
+                     config="['status_map' => ['0' => '禁用', '1' => '启用'], 'color_map' => ['0' => 'danger', '1' => 'success']]" />
+    </yoyo:table>
+
+    <!-- 隐藏字段测试 -->
+    <yoyo:hidden name="test_hidden" value="hidden_value" />
+
+    <div style="margin: 30px 0;">
+        <a href="{:url('index')}" class="btn btn-default">
+            <i class="fa fa-arrow-left"></i> 返回主测试页面
+        </a>
+    </div>
+</div>
+</body>
+</html>

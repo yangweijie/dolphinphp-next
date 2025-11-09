@@ -14,6 +14,7 @@ use app\common\builder\ZBuilder;
 use app\user\model\Role;
 use think\facade\Cache;
 use think\facade\Env;
+use think\paginator;
 
 /**
  * 表格构建器
@@ -1442,7 +1443,7 @@ class Builder extends ZBuilder
             $this->data = $row_list;
             // 转为数组后的表格数据
             $this->_vars['row_list'] = $this->toArray($row_list);
-            if ($row_list instanceof \think\paginator) {
+            if ($row_list instanceof paginator) {
                 $this->_vars['_page_info'] = $row_list;
                 // 设置分页
                 $this->setPages($row_list->render());
@@ -1467,7 +1468,7 @@ class Builder extends ZBuilder
      */
     private function toArray($row_list)
     {
-        if ($row_list instanceof \think\paginator) {
+        if ($row_list instanceof paginator) {
             return $row_list->toArray()['data'];
         } elseif ($row_list instanceof \think\model\Collection) {
             return $row_list->toArray();
