@@ -7,51 +7,36 @@
         "thinkphp",
         "ORM"
     ],
-    "homepage": "https://www.thinkphp.cn/",
+    "homepage": "http://thinkphp.cn/",
     "license": "Apache-2.0",
     "authors": [
         {
             "name": "liu21st",
             "email": "liu21st@gmail.com"
-        },
-        {
-            "name": "yunwuxin",
-            "email": "448901948@qq.com"
         }
     ],
     "require": {
-        "php": ">=8.0.0",
-        "topthink/framework": "^8.0",
-        "topthink/think-orm": "^3.0|^4.0",
-        "topthink/think-filesystem": "^2.0|^3.0",
-        "clickfwd/yoyo": "dev-master",
-        "predis/predis": "^2.0",
-        "firebase/php-jwt": "^6.0",
-        "ramsey/uuid": "^4.0",
-        "topthink/think-migration": "3.1.x-dev"
-    },
-    "require-dev": {
-        "topthink/think-dumper": "^1.0",
-        "topthink/think-trace": "^2.0",
-        "phpunit/phpunit": "^9.0|^10.0",
-        "mockery/mockery": "^1.5"
+        "php": ">=5.6.0",
+        "topthink/framework": "5.1.*",
+        "topthink/think-captcha": "^2.0",
+        "topthink/think-image": "^1.0",
+        "topthink/think-helper": "^1.0",
+        "ezyang/htmlpurifier": "^4.9",
+        "clickfwd/yoyo": "0.13.1",
+        "ext-json": "*"
     },
     "autoload": {
         "psr-4": {
-            "app\\": "app"
-        },
-        "psr-0": {
-            "": "extend/"
+            "app\\": "application"
         }
     },
-    "config": {
-        "preferred-install": "dist"
+    "extra": {
+        "think-path": "thinkphp"
     },
-    "minimum-stability": "dev",
-    "scripts": {
-        "post-autoload-dump": [
-            "@php think service:discover",
-            "@php think vendor:publish"
-        ]
+    "config": {
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "topthink/think-installer": true
+        }
     }
 }

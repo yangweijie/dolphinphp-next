@@ -1,25 +1,34 @@
 <?php
 // +----------------------------------------------------------------------
-// | ThinkPHP [ WE CAN DO IT JUST THINK ]
+// | 海豚PHP框架 [ DolphinPHP ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2006-2019 http://thinkphp.cn All rights reserved.
+// | 版权所有 2016~2019 广东卓锐软件有限公司 [ http://www.zrthink.com ]
 // +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
+// | 官方网站: http://dolphinphp.com
 // +----------------------------------------------------------------------
-// | Author: liu21st <liu21st@gmail.com>
-// +----------------------------------------------------------------------
-
-use think\App;
 
 // [ 应用入口文件 ]
+namespace think;
 
-require __DIR__ . '/../vendor/autoload.php';
+// [ PHP版本检查 ]
+header("Content-type: text/html; charset=utf-8");
+if (version_compare(PHP_VERSION, '5.6', '<')) {
+    die('PHP版本过低，最少需要PHP5.6，请升级PHP版本！');
+}
 
-// 执行HTTP应用并响应
-$http = (new App())->http;
+// 定义后台入口文件
+define('ADMIN_FILE', 'admin.php');
 
-$response = $http->run();
+// 加载基础文件
+require __DIR__ . '/../thinkphp/base.php';
 
-$response->send();
+// 支持事先使用静态方法设置Request对象和Config对象
 
-$http->end($response);
+// 检查是否安装
+if(!is_file('../data/install.lock')){
+    define('BIND_MODULE', 'install');
+    Container::get('app')->bind('install')->run()->send();
+} else {
+    // 执行应用并响应
+    Container::get('app')->run()->send();
+}

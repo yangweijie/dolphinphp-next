@@ -1,101 +1,61 @@
 <?php
+// +----------------------------------------------------------------------
+// | 海豚PHP框架 [ DolphinPHP ]
+// +----------------------------------------------------------------------
+// | 版权所有 2016~2019 广东卓锐软件有限公司 [ http://www.zrthink.com ]
+// +----------------------------------------------------------------------
+// | 官方网站: http://dolphinphp.com
+// +----------------------------------------------------------------------
 
 return [
-    // 默认使用的数据库连接配置 - 支持mysql和sqlite
-    'default'         => env('DB_DRIVER', 'sqlite'),
-
-    // 自定义时间查询规则
-    'time_query_rule' => [],
-
+    // 数据库类型
+    'type'            => 'mysql',
+    // 服务器地址
+    'hostname'        => '127.0.0.1',
+    // 数据库名
+    'database'        => 'dp',
+    // 用户名
+    'username'        => 'root',
+    // 密码
+    'password'        => 'root',
+    // 端口
+    'hostport'        => '3306',
+    // 连接dsn
+    'dsn'             => '',
+    // 数据库连接参数
+    'params'          => [],
+    // 数据库编码默认采用utf8
+    'charset'         => 'utf8',
+    // 数据库表前缀
+    'prefix'          => 'dp_',
+    // 数据库调试模式
+    'debug'           => true,
+    // 数据库部署方式:0 集中式(单一服务器),1 分布式(主从服务器)
+    'deploy'          => 0,
+    // 数据库读写是否分离 主从式有效
+    'rw_separate'     => false,
+    // 读写分离后 主服务器数量
+    'master_num'      => 1,
+    // 指定从服务器序号
+    'slave_no'        => '',
+    // 自动读取主库数据
+    'read_master'     => false,
+    // 是否严格检查字段是否存在
+    'fields_strict'   => false,
+    // 数据集返回类型
+    'resultset_type'  => 'array',
     // 自动写入时间戳字段
-    // true为自动识别类型 false关闭
-    // 字符串则明确指定时间字段类型 支持 int timestamp datetime date
-    'auto_timestamp'  => true,
-
+    'auto_timestamp'  => false,
     // 时间字段取出后的默认时间格式
-    'datetime_format' => 'Y-m-d H:i:s',
-
-    // 时间字段配置 配置格式：create_time,update_time
-    'datetime_field'  => '',
-
-    // 数据库连接配置信息
-    'connections'     => [
-        'mysql' => [
-            // 数据库类型
-            'type'            => env('DB_TYPE', 'mysql'),
-            // 服务器地址
-            'hostname'        => env('DB_HOST', '127.0.0.1'),
-            // 数据库名
-            'database'        => env('DB_NAME', 'dolphinphp'),
-            // 用户名
-            'username'        => env('DB_USER', 'root'),
-            // 密码
-            'password'        => env('DB_PASS', ''),
-            // 端口
-            'hostport'        => env('DB_PORT', '3306'),
-            // 数据库连接参数
-            'params'          => [],
-            // 数据库编码
-            'charset'         => env('DB_CHARSET', 'utf8mb4'),
-            // 数据库表前缀
-            'prefix'          => env('DB_PREFIX', 'dp_'),
-
-            // 数据库部署方式:0 集中式(单一服务器),1 分布式(主从服务器)
-            'deploy'          => 0,
-            // 数据库读写是否分离 主从式有效
-            'rw_separate'     => false,
-            // 读写分离后 主服务器数量
-            'master_num'      => 1,
-            // 指定从服务器序号
-            'slave_no'        => '',
-            // 是否严格检查字段是否存在
-            'fields_strict'   => true,
-            // 是否需要断线重连
-            'break_reconnect' => false,
-            // 监听SQL
-            'trigger_sql'     => env('APP_DEBUG', true),
-            // 开启字段缓存
-            'fields_cache'    => false,
-        ],
-        
-        // SQLite配置 - 无需额外安装，开箱即用
-        'sqlite' => [
-            // 数据库类型
-            'type'            => 'sqlite',
-            // 数据库文件路径
-            'database'        => env('DB_SQLITE_PATH', './database/database.sqlite'),
-            // 服务器地址
-            'hostname'        => '',
-            // 用户名
-            'username'        => '',
-            // 密码
-            'password'        => '',
-            // 端口
-            'hostport'        => '',
-            // 数据库连接参数
-            'params'          => [],
-            // 数据库表前缀
-            'prefix'          => env('DB_PREFIX', 'dp_'),
-            // 数据库编码
-            'charset'         => 'utf8',
-            // 是否严格检查字段是否存在
-            'fields_strict'   => true,
-            // 监听SQL
-            'trigger_sql'     => env('APP_DEBUG', true),
-            // 开启字段缓存
-            'fields_cache'    => false,
-            // 数据库部署方式:0 集中式(单一服务器),1 分布式(主从服务器)
-            'deploy'          => 0,
-            // 数据库读写是否分离 主从式有效
-            'rw_separate'     => false,
-            // 读写分离后 主服务器数量
-            'master_num'      => 1,
-            // 指定从服务器序号
-            'slave_no'        => '',
-            // 是否需要断线重连
-            'break_reconnect' => false,
-        ],
-
-        // 更多的数据库配置信息
-    ],
+    'datetime_format' => false,
+    // 是否需要进行SQL性能分析
+    'sql_explain'     => false,
+    // Builder类
+    'builder'         => '',
+    // Query类
+    'query'           => '\\think\\db\\Query',
+    // 是否需要断线重连
+    'break_reconnect' => false,
+    // 断线标识字符串
+    'break_match_str' => [],
 ];
