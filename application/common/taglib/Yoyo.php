@@ -58,12 +58,17 @@ class Yoyo extends TagLib
      */
     public function tagText($tag, $content)
     {
-        $name = $this->autoBuildVar($tag['name'] ?? "''");
-        $title = $this->autoBuildVar($tag['title'] ?? "''");
-        $value = $this->autoBuildVar($tag['value'] ?? "''");
-        $config = $this->autoBuildVar($tag['config'] ?? '[]');
-
-        return '<?php echo yoyo_text(' . $name . ', ' . $title . ', ' . $value . ', ' . $config . '); ?>';
+        $config = $tag['config'] ??[];
+        $name = $this->autoBuildVar($name);
+        $title = $this->autoBuildVar($title);
+        $value = $this->autoBuildVar($value)??'';
+        $config = $this->autoBuildVar($config)??[];
+//        var_dump($config);
+//        die;
+        return <<<TPL
+{assign name="config" value="$config" /}
+{:yoyo_text('$name' , '$title' , '$value', \$config)}
+TPL;
     }
 
     /**

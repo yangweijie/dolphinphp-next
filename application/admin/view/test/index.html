@@ -95,7 +95,7 @@
         <div class="test-section">
             <h3 class="test-title"><i class="fa fa-table"></i> HTMX表格测试</h3>
             <div id="user-table-container">
-                {include file="test/table_partial" /}
+
             </div>
         </div>
 
@@ -107,8 +107,8 @@
                     <yoyo:form action="{:url('save')}" method="POST">
                         <div class="row">
                             <div class="col-md-6">
-                                <yoyo:text name="username" title="用户名" value=""
-                                           config="['required' => true, 'maxlength' => 50, 'placeholder' => '请输入用户名']" />
+                                {yoyo:text name="username" title="用户名" value=""
+                                           config="user_options" /}
                             </div>
                             <div class="col-md-6">
                                 <yoyo:text name="email" title="邮箱" value=""
@@ -122,12 +122,12 @@
                                                config="['required' => true, 'placeholder' => '请输入密码']" />
                             </div>
                             <div class="col-md-6">
-                                <yoyo:select name="role_id" title="角色" options="{$roles}" value=""
+                                <yoyo:select name="role_id" title="角色" options="roles" value=""
                                              config="['placeholder' => '请选择角色']" />
                             </div>
                         </div>
 
-                        <yoyo:checkbox name="permissions" title="权限" options="{$permissions}"
+                        <yoyo:checkbox name="permissions" title="权限" options="permissions"
                                        value="[]"
                                        config="['inline' => false, 'columns' => 2]" />
 

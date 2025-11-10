@@ -81,6 +81,7 @@ class Test
         }
 
         return view('test/index', [
+            'user_options'=>['required' => true, 'maxlength' => 50, 'placeholder' => '请输入用户名'],
             'users' => $users,
             'table_columns' => $table_columns,
             'pagination_config' => $pagination_config,

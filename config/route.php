@@ -3,6 +3,15 @@
 // | 路由设置
 // +----------------------------------------------------------------------
 
+// YoYo组件路由
+use think\facade\Route;
+use util\YoyoAdapter;
+use think\Request;
+
+Route::any('yoyo/[:component]', function($component = '', Request $request) {
+    return YoyoAdapter::handle( $request);
+});
+
 return [
     // pathinfo分隔符
     'pathinfo_depr'         => '/',

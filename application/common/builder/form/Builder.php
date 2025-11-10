@@ -62,7 +62,16 @@ class Builder extends ZBuilder
         'empty_tips'      => '暂无数据',// 没有表单项时的提示信息
         '_token_name'     => '__token__', // 表单令牌名称
         '_token_value'    => '', // 表单令牌值
+
+
+        'htmx_submit'     => true,  // 改为htmx_submit
+        'htmx_enabled'    => true,  // 新增：启用HTMX
+        'htmx_target'     => '#form-result', // 新增：HTMX目标
+        'htmx_swap'       => 'outerHTML', // 新增：HTMX交换模式
+        'htmx_indicator'  => '#form-loading', // 新增：加载指示器
     ];
+
+
 
     /**
      * @var bool 是否组合分组
@@ -2357,5 +2366,49 @@ class Builder extends ZBuilder
 
         // 实例化视图并渲染
         return parent::fetch($this->_template, $this->_vars, $config);
+    }
+
+    // 在Builder类中添加方法
+    public function addYoyoComponent($type, $name, $title, $props = [])
+    {
+        $component_data = [
+            'type' => 'yoyo',
+            'component' => $type,
+            'name' => $name,
+            'title' => $title,
+            'props' => $props
+        ];
+
+        $this->_vars['form_items'][] = [$type => $component_data];
+        return $this;
+    }
+
+    /**
+     * 启用HTMX模式
+     * @param string $target 目标选择器
+     * @param string $swap 交换模式
+     * @return $this
+     */
+    public function enableHtmx($target = '#form-result', $swap = 'outerHTML'): Builder
+    {
+        $this->_vars['htmx_enabled'] = true;
+        $this->_vars['htmx_target'] = $target;
+        $this->_vars['htmx_swap'] = $swap;
+        return $this;
+    }
+
+    /**
+     * 添加字段验证
+     * @param string $field 字段名
+     * @param string $url 验证URL
+     * @return $this
+     */
+    public function addFieldValidation($field, $url = ''): Builder
+    {
+        if (empty($url)) {
+            $url = "/validate/{$field}";
+        }
+        $this->_vars['field_validations'][$field] = $url;
+        return $this;
     }
 }

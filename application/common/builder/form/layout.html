@@ -375,4 +375,36 @@
 
     {// 额外JS代码 }
     {$extra_js|raw|default=''}
+
+    // HTMX全局配置
+    htmx.config.defaultSwapStyle = 'outerHTML';
+    htmx.config.defaultSettleDelay = 100;
+
+    // 表单响应处理
+    function handleFormResponse(event) {
+    if (event.detail.xhr.status === 200) {
+        // 成功提示
+        parent.layer && parent.layer.msg('操作成功', {icon: 1});
+        // 如果是弹窗，关闭弹窗
+        if (window.parent !== window) {
+            parent.layer.closeAll();
+            parent.location.reload();
+        }else {
+            // 错误处理
+            parent.layer && parent.layer.msg('操作失败', {icon: 2});
+        }
+    }
+
+    // HTMX事件监听
+    document.addEventListener('htmx:beforeRequest', function(event) {
+        // 请求前显示加载状态
+        const indicator = document.querySelector('#form-loading');
+        if (indicator) indicator.style.display = 'block';
+    });
+
+    document.addEventListener('htmx:afterRequest', function(event) {
+        // 请求后隐藏加载状态
+        const indicator = document.querySelector('#form-loading');
+        if (indicator) indicator.style.display = 'none';
+    });
 {/block}

@@ -93,6 +93,7 @@
 
     <!--自定义css-->
     <link rel="stylesheet" href="__ADMIN_CSS__/custom.css?v={:config('asset_version')}">
+    <script src="__LIBS__/htmlx.min.js"></script>
     <script>
         // url
         var dolphin = {
@@ -128,6 +129,18 @@
             'curr_params': {:json_encode($Request.param)},
             'layer': {:json_encode(config("zbuilder.pop"))}
         };
+
+
+
+        // YoYo配置
+        window.yoyo = {
+            baseUrl: '/yoyo/',
+            csrfToken: '{$_token_value}'
+        };
+
+        // HTMX配置
+        htmx.config.defaultSwapStyle = 'outerHTML';
+        htmx.config.defaultSettleDelay = 100;
     </script>
 </head>
 <body>

@@ -10,6 +10,7 @@
 namespace app\common\controller;
 
 use think\Controller;
+use think\Response;
 
 /**
  * 项目公共控制器
@@ -162,5 +163,54 @@ class Common extends Controller
         $template = $template == '' ? $action : $template;
         $template_path = config('plugin_path'). "{$plugin}/view/{$template}.{$suffix}";
         return parent::fetch($template_path, $vars, $config);
+    }
+
+    /**
+     * HTMX响应助手
+     * @param mixed $data 数据
+     * @param string $message 消息
+     * @param int $code 状态码
+     * @return Response
+     */
+    protected function htmxResponse($data = '', string $message = '', int $code = 1)
+    {
+        $result = [
+            'code' => $code,
+            'msg'  => $message,
+            'data' => $data
+        ];
+
+        // 如果是HTMX请求
+        if ($this->request->header('HX-Request')) {
+            if ($code === 1) {
+                // 成功时返回HTML片段
+                return $this->fetch('', $data);
+            } else {
+                // 错误时返回错误信息
+                return '<div class="alert alert-danger">' . $message . '</div>';
+            }
+        }
+
+        // 普通AJAX请求返回JSON
+        return json($result);
+    }
+
+    /**
+     * 字段验证接口
+     * @param string $field 字段名
+     * @return string
+     */
+    public function validate($field = '')
+    {
+        $value = $this->request->post($field);
+
+        // 这里添加你的验证逻辑
+//        $isValid = $this->validateField($field, $value);
+        $isValid = true;
+        if ($isValid) {
+            return '<span class="text-success"><i class="fa fa-check"></i></span>';
+        } else {
+            return '<span class="text-danger"><i class="fa fa-times"></i> 格式不正确</span>';
+        }
     }
 }
