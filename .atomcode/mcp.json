@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "database": {
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/mcp-database"]
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@context7/mcp-server"]
+    }
+  }
+}

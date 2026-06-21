@@ -1,0 +1,258 @@
+- generic [ref=e5]:
+  - banner [ref=e6]:
+    - generic [ref=e7]:
+      - button [ref=e8] [cursor=pointer]:
+        - img [ref=e11]
+      - navigation "Breadcrumb" [ref=e15]:
+        - list [ref=e16]:
+          - listitem [ref=e17]:
+            - generic [ref=e19]:
+              - img [ref=e20]
+              - text: 页面配置
+      - generic [ref=e23]:
+        - button [ref=e24] [cursor=pointer]:
+          - img [ref=e27]
+        - button [ref=e29] [cursor=pointer]:
+          - img [ref=e32]
+        - button [ref=e34] [cursor=pointer]:
+          - img [ref=e37]
+        - button [ref=e40] [cursor=pointer]:
+          - img [ref=e43]
+        - button [ref=e45] [cursor=pointer]:
+          - img [ref=e48]
+        - button [ref=e50] [cursor=pointer]:
+          - img [ref=e53]
+        - button "超级管理员" [ref=e58] [cursor=pointer]:
+          - generic [ref=e60]:
+            - img [ref=e61]
+            - generic [ref=e63]: 超级管理员
+  - generic [ref=e66]:
+    - generic [ref=e67]:
+      - generic [ref=e68] [cursor=pointer]:
+        - generic:
+          - img:
+            - img
+            - generic:
+              - img
+        - img [ref=e69]
+        - generic [ref=e71]: 首页
+      - generic [ref=e73] [cursor=pointer]:
+        - generic:
+          - img:
+            - img
+            - generic:
+              - img
+        - img [ref=e74]
+        - generic [ref=e75]: 页面配置
+        - img [ref=e77]
+    - button [ref=e80] [cursor=pointer]:
+      - img [ref=e83]
+    - button [ref=e85] [cursor=pointer]:
+      - img [ref=e88]
+  - complementary [ref=e91]:
+    - generic [ref=e92]:
+      - link "Logo Thinkrix Admin" [ref=e93] [cursor=pointer]:
+        - /url: "#/"
+        - img "Logo" [ref=e94]
+        - heading "Thinkrix Admin" [level=2] [ref=e95]
+      - region "scrollable content" [ref=e102]:
+        - menu [ref=e104]:
+          - menuitem "首页" [ref=e105]:
+            - img [ref=e106] [cursor=pointer]
+            - text: 首页
+          - menuitem "页面配置" [ref=e108]:
+            - img [ref=e109] [cursor=pointer]
+            - text: 页面配置
+          - menu [ref=e110] [cursor=pointer]:
+            - menuitem "系统管理" [ref=e111]:
+              - img [ref=e112]
+              - text: 系统管理
+              - img [ref=e115]
+  - main [ref=e117]:
+    - generic [ref=e118]:
+      - generic [ref=e119]:
+        - generic [ref=e121]: 首页模块设置
+        - generic [ref=e125] [cursor=pointer]:
+          - img [ref=e128]
+          - text: 首页模块设置
+        - generic [ref=e131]:
+          - generic [ref=e133] [cursor=pointer]:
+            - img [ref=e136]
+            - text: 组件模块配置
+          - generic [ref=e140]:
+            - generic [ref=e141]:
+              - generic [ref=e143] [cursor=pointer]: ⬡
+              - generic [ref=e145] [cursor=pointer]: 金刚区
+            - generic [ref=e146]:
+              - generic [ref=e148] [cursor=pointer]: ⬡
+              - generic [ref=e150] [cursor=pointer]: 通知
+            - generic [ref=e151]:
+              - generic [ref=e153] [cursor=pointer]: ⬡
+              - generic [ref=e155] [cursor=pointer]: 商品推荐
+            - generic [ref=e156]:
+              - generic [ref=e158] [cursor=pointer]: ⬡
+              - generic [ref=e160] [cursor=pointer]: 轮播
+            - generic [ref=e161]:
+              - generic [ref=e163] [cursor=pointer]: ⬡
+              - generic [ref=e165] [cursor=pointer]: 浮窗
+            - generic [ref=e166]:
+              - generic [ref=e168] [cursor=pointer]: ⬡
+              - generic [ref=e170] [cursor=pointer]: 自定义
+            - generic [ref=e171]:
+              - generic [ref=e173] [cursor=pointer]: ⬡
+              - generic [ref=e175] [cursor=pointer]: 弹窗
+            - generic [ref=e176]:
+              - generic [ref=e178] [cursor=pointer]: ⬡
+              - generic [ref=e180] [cursor=pointer]: 顶部导航栏
+            - generic [ref=e181]:
+              - generic [ref=e183] [cursor=pointer]: ⬡
+              - generic [ref=e185] [cursor=pointer]: 瓷片区
+            - generic [ref=e186]:
+              - generic [ref=e188] [cursor=pointer]: ⬡
+              - generic [ref=e190] [cursor=pointer]: 搜索
+            - generic [ref=e191]:
+              - generic [ref=e193] [cursor=pointer]: ⬡
+              - generic [ref=e195] [cursor=pointer]: 秒杀
+            - generic [ref=e196]:
+              - generic [ref=e198] [cursor=pointer]: ⬡
+              - generic [ref=e200] [cursor=pointer]: 活动组件
+            - generic [ref=e201]:
+              - generic [ref=e203] [cursor=pointer]: ⬡
+              - generic [ref=e205] [cursor=pointer]: 顶部导航栏
+            - generic [ref=e206]:
+              - generic [ref=e208] [cursor=pointer]: ⬡
+              - generic [ref=e210] [cursor=pointer]: 裂变券
+        - generic [ref=e214] [cursor=pointer]:
+          - img [ref=e217]
+          - text: 底部导航
+        - generic [ref=e222] [cursor=pointer]:
+          - img [ref=e225]
+          - text: 登录设置
+        - generic [ref=e230] [cursor=pointer]:
+          - img [ref=e233]
+          - text: 基础信息
+      - generic [ref=e236]: 金刚区
+      - generic [ref=e238]: 通知区
+      - generic [ref=e240]: 卡片区
+      - generic [ref=e242]: 广告区
+      - generic [ref=e244]: 折扣活动区
+      - generic [ref=e246]: 商品区
+      - generic [ref=e248]:
+        - generic [ref=e249]:
+          - generic [ref=e250]: 9:41
+          - generic [ref=e251]:
+            - generic [ref=e252]: ●●●●○
+            - generic [ref=e253]: WiFi
+            - generic [ref=e254]: 🔋
+        - generic [ref=e255]:
+          - generic [ref=e257]:
+            - generic [ref=e258]:
+              - generic [ref=e259]: 话费
+              - generic [ref=e260]: 话费
+            - generic [ref=e261]:
+              - generic [ref=e262]: 美团
+              - generic [ref=e263]: 美团
+            - generic [ref=e264]:
+              - generic [ref=e265]: 加油
+              - generic [ref=e266]: 加油
+            - generic [ref=e267]:
+              - generic [ref=e268]: 叮咚
+              - generic [ref=e269]: 叮咚
+            - generic [ref=e270]:
+              - generic [ref=e271]: 电影
+              - generic [ref=e272]: 电影
+            - generic [ref=e273]:
+              - generic [ref=e274]: 永辉
+              - generic [ref=e275]: 永辉
+            - generic [ref=e276]:
+              - generic [ref=e277]: 山姆
+              - generic [ref=e278]: 山姆
+            - generic [ref=e279]:
+              - generic [ref=e280]: 商城
+              - generic [ref=e281]: 商城
+            - generic [ref=e282]:
+              - generic [ref=e283]: 游旅
+              - generic [ref=e284]: 游旅
+            - generic [ref=e285]:
+              - generic [ref=e286]: 视听
+              - generic [ref=e287]: 视听
+          - generic [ref=e288]:
+            - generic [ref=e289]: 📢
+            - generic [ref=e290]: 资讯 商城上线啦！
+          - generic [ref=e292]:
+            - generic [ref=e295]: 京东电子卡
+            - generic [ref=e298]: 山姆电子卡
+            - generic [ref=e301]: 天猫电子卡
+            - generic [ref=e304]: 百果园电子卡
+            - generic [ref=e307]: 盒马鲜生
+            - generic [ref=e310]: 美团外卖
+            - generic [ref=e313]: 奈雪的茶
+            - generic [ref=e316]: 星巴克礼品卡
+          - generic [ref=e317]: 广告位
+          - generic [ref=e322]: 猜你喜欢
+          - generic [ref=e324]:
+            - generic [ref=e327]:
+              - generic [ref=e328]: 商品名称示例
+              - generic [ref=e329]: ¥99.00
+            - generic [ref=e332]:
+              - generic [ref=e333]: 商品名称示例
+              - generic [ref=e334]: ¥199.00
+      - generic [ref=e336]:
+        - heading "组件模块 / 配置信息" [ref=e337]:
+          - heading "组件模块 / 配置信息" [ref=e338]
+        - generic [ref=e341]: 模块：金刚区
+        - generic [ref=e342]: 已关闭
+        - switch [ref=e343]
+        - generic [ref=e346]: 开启中
+        - generic [ref=e349]: 模块：通知
+        - generic [ref=e350]: 已关闭
+        - switch [ref=e351]
+        - generic [ref=e354]: 开启中
+        - generic [ref=e357]: 模块：商品推荐
+        - generic [ref=e358]: 已关闭
+        - switch [ref=e359]
+        - generic [ref=e362]: 开启中
+        - generic [ref=e365]: 模块：轮播
+        - generic [ref=e366]: 已关闭
+        - switch [ref=e367]
+        - generic [ref=e370]: 开启中
+        - generic [ref=e373]: 模块：浮窗
+        - generic [ref=e374]: 已关闭
+        - switch [ref=e375]
+        - generic [ref=e378]: 开启中
+        - generic [ref=e381]: 模块：自定义
+        - generic [ref=e382]: 已关闭
+        - switch [ref=e383]
+        - generic [ref=e386]: 开启中
+        - generic [ref=e389]: 模块：弹窗
+        - generic [ref=e390]: 已关闭
+        - switch [ref=e391]
+        - generic [ref=e394]: 开启中
+        - generic [ref=e397]: 模块：顶部导航栏
+        - generic [ref=e398]: 已关闭
+        - switch [ref=e399]
+        - generic [ref=e402]: 开启中
+        - generic [ref=e405]: 模块：瓷片区
+        - generic [ref=e406]: 已关闭
+        - switch [ref=e407]
+        - generic [ref=e410]: 开启中
+        - generic [ref=e413]: 模块：搜索
+        - generic [ref=e414]: 已关闭
+        - switch [ref=e415]
+        - generic [ref=e418]: 开启中
+        - generic [ref=e421]: 模块：秒杀
+        - generic [ref=e422]: 已关闭
+        - switch [ref=e423]
+        - generic [ref=e426]: 开启中
+        - generic [ref=e429]: 模块：活动组件
+        - generic [ref=e430]: 已关闭
+        - switch [ref=e431]
+        - generic [ref=e434]: 开启中
+        - generic [ref=e437]: 模块：顶部导航栏
+        - generic [ref=e438]: 已关闭
+        - switch [ref=e439]
+        - generic [ref=e442]: 开启中
+        - generic [ref=e445]: 模块：裂变券
+        - generic [ref=e446]: 已关闭
+        - switch [ref=e447]
+        - generic [ref=e450]: 开启中

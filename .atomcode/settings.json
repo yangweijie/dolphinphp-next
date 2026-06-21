@@ -1,0 +1,21 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "glob": ".env",
+        "action": "block",
+        "message": "⚠️ .env 包含敏感配置，请勿直接编辑。如需修改连接信息，请通过 config/database.php 操作。"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "glob": "composer.json",
+        "action": "notify",
+        "message": "composer.json 已变更，建议运行：composer dump-autoload"
+      }
+    ]
+  },
+  "permissions": {
+    "allow": ["Edit", "Write", "Bash(composer:*)"]
+  }
+}
